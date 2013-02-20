@@ -3,6 +3,10 @@
  */
 package org.ansy.dartcon.bl;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+
 /**
  * @Author : anand <br/>
  * 
@@ -11,8 +15,40 @@ package org.ansy.dartcon.bl;
 public class ResourceLoader
 {
 
-	public void loadSourceFile()
+	public void loadSourceFile(String source)
 	{
+		File file = null;
+		FileInputStream fin = null;
+
+		try
+		{
+			
+			file=new File(source);
+			fin=new FileInputStream(file);
+			
+			
+
+		} catch(IOException ioe)
+		{
+			System.out.println(ioe);
+
+		} finally
+		{
+
+			try
+			{
+				if(fin != null)
+				{
+					fin.close();
+				}
+				
+				
+			} catch(IOException ioe)
+			{
+				System.out.println(ioe);
+			}
+
+		}
 
 	}
 

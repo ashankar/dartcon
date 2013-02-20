@@ -16,5 +16,8 @@ public class Converter
 		System.out.println("Con.............");
 		System.out.println(source);
 		System.out.println(dest);
+		
+		new ResourceLoader().loadSourceFile(source);
+		
 	}
 }
