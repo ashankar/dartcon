@@ -26,6 +26,11 @@ public final class MainFrame extends JFrame
 
 	private void initUI()
 	{
+
+		setTitle("DartCon");
+		setBounds(300, 150, 500, 400);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		add(new ConverterPanel());
 		setVisible(true);
 
 	}
