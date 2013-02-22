@@ -10,13 +10,12 @@ import org.ansy.dartcon.ui.MainFrame;
  * 
  *         Description about EntryPoint : <br/>
  */
-public class EntryPoint
-{
+public class EntryPoint {
 
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 
 		MainFrame.startApplication();
+		// new ResourceLoader().loadPropertyFile();
 
 	}
 
