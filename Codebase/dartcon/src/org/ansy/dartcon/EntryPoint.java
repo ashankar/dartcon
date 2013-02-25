@@ -3,19 +3,21 @@
  */
 package org.ansy.dartcon;
 
-import org.ansy.dartcon.ui.MainFrame;
+import org.ansy.dartcon.bl.ResourceLoader;
 
 /**
  * @Author : anand <br/>
  * 
  *         Description about EntryPoint : <br/>
  */
-public class EntryPoint {
+public class EntryPoint
+{
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 
-		MainFrame.startApplication();
-		// new ResourceLoader().loadPropertyFile();
+		// MainFrame.startApplication();
+		new ResourceLoader().loadPropertyFile();
 
 	}
 

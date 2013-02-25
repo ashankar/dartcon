@@ -17,20 +17,24 @@ import java.util.StringTokenizer;
  * 
  *         Description about ResourceLoader : <br/>
  */
-public class ResourceLoader {
+public class ResourceLoader
+{
 
-	public void loadSourceFile(String source, String dest) {
+	public void loadSourceFile(String source, String dest)
+	{
 		File file = null;
 		FileInputStream fin = null;
 
-		try {
+		try
+		{
 
 			file = new File(source);
 			fin = new FileInputStream(file);
 			int size = fin.available();
 			StringBuffer sb = new StringBuffer();
 
-			for (int i = 0; i < size; i++) {
+			for(int i = 0; i < size; i++)
+			{
 				sb.append((char) fin.read());
 			}
 
@@ -40,17 +44,22 @@ public class ResourceLoader {
 
 			writeToFile(parsedData, dest, fileInfo);
 
-		} catch (IOException ioe) {
+		} catch(IOException ioe)
+		{
 			System.out.println(ioe);
 
-		} finally {
+		} finally
+		{
 
-			try {
-				if (fin != null) {
+			try
+			{
+				if(fin != null)
+				{
 					fin.close();
 				}
 
-			} catch (IOException ioe) {
+			} catch(IOException ioe)
+			{
 				System.out.println(ioe);
 			}
 
@@ -58,16 +67,17 @@ public class ResourceLoader {
 
 	}
 
-	private String parseString(String data) {
+	private String parseString(String data)
+	{
 
-		Set<Entry<Object, Object>> entrySet = loadPropertyFile();
+		Set<Entry<Object, Object>> entrySet = null;//loadPropertyFile();
 
 		String parsedData = data;
 
-		for (Entry<Object, Object> entry : entrySet) {
+		for(Entry<Object, Object> entry : entrySet)
+		{
 
-			parsedData = parsedData.replaceAll(entry.getKey().toString(), entry
-					.getValue().toString());
+			parsedData = parsedData.replaceAll(entry.getKey().toString(), entry.getValue().toString());
 
 		}
 
@@ -75,50 +85,64 @@ public class ResourceLoader {
 
 	}
 
-	private Set<Entry<Object, Object>> loadPropertyFile() {
-
+	public void loadPropertyFile()
+	{
+		// Set<Entry<Object, Object>>
 		Properties prop = new Properties();
 		File file = new File("resources", "js2dart.properties");
 		Set<Entry<Object, Object>> entrySet = null;
 		FileInputStream fin = null;
 
-		try {
+		try
+		{
 
 			fin = new FileInputStream(file);
 			prop.load(fin);
 			entrySet = prop.entrySet();
 
-		} catch (IOException ioe) {
+			for(Entry<Object, Object> en : entrySet)
+			{
+				System.out.println(en.getKey() + " = " + en.getValue());
+			}
+
+		} catch(IOException ioe)
+		{
 			System.out.println(ioe);
 
-		} finally {
+		} finally
+		{
 
-			try {
-				if (fin != null) {
+			try
+			{
+				if(fin != null)
+				{
 					fin.close();
 				}
 
-			} catch (IOException ioe) {
+			} catch(IOException ioe)
+			{
 				System.out.println(ioe);
 			}
 
 		}
 
-		return entrySet;
+		// return entrySet;
 
 	}
 
-	private void writeToFile(String parsedData, String destPath,
-			String fileInfo[]) {
+	private void writeToFile(String parsedData, String destPath, String fileInfo[])
+	{
 
 		String fileName = fileInfo[0];
 		String fileType = fileInfo[1];
 		String finalFileName = "";
 
-		if (fileType.equalsIgnoreCase("js")) {
+		if(fileType.equalsIgnoreCase("js"))
+		{
 			finalFileName = fileName + "." + "dart";
 
-		} else if (fileType.equalsIgnoreCase("dart")) {
+		} else if(fileType.equalsIgnoreCase("dart"))
+		{
 			finalFileName = fileName + "." + "js";
 
 		}
@@ -126,38 +150,47 @@ public class ResourceLoader {
 		File file = new File(destPath, finalFileName);
 		FileWriter fw = null;
 
-		try {
+		try
+		{
 			fw = new FileWriter(file);
 			fw.write(parsedData);
-			System.out.println("File create! Location : " + destPath + " File Name : "+ finalFileName );
+			System.out.println("File create! Location : " + destPath + " File Name : " + finalFileName);
 
-		} catch (IOException ioe) {
+		} catch(IOException ioe)
+		{
 			System.out.println(ioe);
 
-		} catch (Exception e) {
+		} catch(Exception e)
+		{
 			System.out.println(e);
 
-		} finally {
+		} finally
+		{
 
-			try {
-				if (fw != null) {
+			try
+			{
+				if(fw != null)
+				{
 					fw.close();
 				}
 
-			} catch (IOException ioe) {
+			} catch(IOException ioe)
+			{
 				System.out.println(ioe);
 			}
 		}
 
 	}
 
-	private String[] getFileType(String fileName) {
+	private String[] getFileType(String fileName)
+	{
 
 		String fileInfo[] = new String[2];
 		int index = 0;
 		StringTokenizer st = new StringTokenizer(fileName, ".");
 
-		while (st.hasMoreElements()) {
+		while(st.hasMoreElements())
+		{
 
 			fileInfo[index] = st.nextToken();
 			index++;
